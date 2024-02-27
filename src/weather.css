@@ -1,0 +1,10 @@
+.WeatherApp {
+  border: 2px solid gray;
+  border-radius: 4px;
+}
+ul li {
+  list-style: none;
+}
+.weather-info {
+  padding-left: 0;
+}
