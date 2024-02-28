@@ -4,32 +4,42 @@ import "./Weather.css";
 
 export default function Weather() {
   return (
-    <div className="WeatherApp container mt-5 p-4">
-      <form>
-        <input type="search" placeholder="Enter city" />
-        <input type="submit" value="Search" />
+    <div className="WeatherApp container mt-5 p-4 w-50">
+      <form className="mb-4">
+        <div className="row">
+          <div className="col-8">
+            <input
+              className="form-control p-3"
+              type="search"
+              placeholder="Enter city"
+            />
+          </div>
+          <div className="col-4">
+            <input
+              className="btn btn-primary p-3 w-50"
+              type="submit"
+              value="Search"
+            />
+          </div>
+        </div>
       </form>
-      <h1>Joburg</h1>
+      <h1 className="mb-0">Joburg</h1>
       <ul className="weather-info">
         <li>Tuesday 11:00</li>
         <li>Light rain</li>
       </ul>
-      <div className="row">
+      <div className="row mb-4">
         <div className="col-6">
-          <div className="row">
-            <div className="col-3">
-              <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                alt="weather image"
-                className="img-fluid"
-              />
-            </div>
-            <div className="col-3">
-              <h2>18 C</h2>
-            </div>
-          </div>
+          <img
+            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+            alt="weather image"
+            className="weather-image img-fluid"
+          />
+          <span className="temperature">
+            18<span className="units">C</span>
+          </span>
         </div>
-        <div className="col-6">
+        <div className="col-6 d-flex align-items-center">
           <div className="weather-description">
             <ul>
               <li>Precipitation: 25%</li>
