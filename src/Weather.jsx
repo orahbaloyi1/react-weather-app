@@ -5,6 +5,10 @@ import "./Weather.css";
 export default function Weather() {
   return (
     <div className="WeatherApp container mt-5 p-4">
+      <form>
+        <input type="search" placeholder="Enter city" />
+        <input type="submit" value="Search" />
+      </form>
       <h1>Joburg</h1>
       <ul className="weather-info">
         <li>Tuesday 11:00</li>
