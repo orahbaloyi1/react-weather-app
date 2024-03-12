@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 import "./Weather.css";
 
 export default function Weather() {
+  const [weatherData, setWeatherData] = useState(null);
+  function handleResponse(response) {
+    console.log(response.data.main.temp);
+    setWeatherData({
+      temperature: response.data.main.temp,
+      description: response.data.main,
+      wind: response.data.main,
+      humudity: response.data.main,
+      date: "Tuesday 07:00",
+    });
+  }
+  const apiKey = "7b2103381278d28203d89c397e41d56e";
+  let city = "London";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(handleResponse);
+
   return (
     <div className="WeatherApp container mt-5 p-4 w-50">
       <form className="mb-4">
@@ -25,8 +42,8 @@ export default function Weather() {
       </form>
       <h1 className="mb-0">Joburg</h1>
       <ul className="weather-info">
-        <li>Tuesday 11:00</li>
-        <li>Light rain</li>
+        <li>{weatherData.date}</li>
+        <li>{weatherData.description}</li>
       </ul>
       <div className="row mb-4">
         <div className="col-6">
@@ -36,15 +53,16 @@ export default function Weather() {
             className="weather-image img-fluid"
           />
           <span className="temperature">
-            18<span className="units">C</span>
+            {weatherData.Math.round(temperature)}
+            <span className="units">C</span>
           </span>
         </div>
         <div className="col-6 d-flex align-items-center">
           <div className="weather-description">
             <ul>
-              <li>Precipitation: 25%</li>
-              <li>Humidity:92%</li>
-              <li>Wind:10 km/h</li>
+              <li>Precipitation:{weatherData.precipitation}</li>
+              <li>Humidity:{weatherData.humidity}</li>
+              <li>Wind:{weatherData.wind}</li>
             </ul>
           </div>
         </div>
