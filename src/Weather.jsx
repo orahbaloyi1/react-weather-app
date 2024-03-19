@@ -4,16 +4,10 @@ import axios from "axios";
 import "./Weather.css";
 
 export default function Weather() {
-  const [weatherData, setWeatherData] = useState(null);
+  const [temperature, setTemperature] = useState("");
   function handleResponse(response) {
     console.log(response.data.main.temp);
-    setWeatherData({
-      temperature: response.data.main.temp,
-      description: response.data.main,
-      wind: response.data.main,
-      humudity: response.data.main,
-      date: "Tuesday 07:00",
-    });
+    setTemperature(response.data.main.temp);
   }
   const apiKey = "7b2103381278d28203d89c397e41d56e";
   let city = "London";
@@ -42,8 +36,8 @@ export default function Weather() {
       </form>
       <h1 className="mb-0">Joburg</h1>
       <ul className="weather-info">
-        <li>{weatherData.date}</li>
-        <li>{weatherData.description}</li>
+        <li>22</li>
+        <li>cloudy</li>
       </ul>
       <div className="row mb-4">
         <div className="col-6">
@@ -53,16 +47,16 @@ export default function Weather() {
             className="weather-image img-fluid"
           />
           <span className="temperature">
-            {weatherData.Math.round(temperature)}
+            {temperature}
             <span className="units">C</span>
           </span>
         </div>
         <div className="col-6 d-flex align-items-center">
           <div className="weather-description">
             <ul>
-              <li>Precipitation:{weatherData.precipitation}</li>
-              <li>Humidity:{weatherData.humidity}</li>
-              <li>Wind:{weatherData.wind}</li>
+              <li>Precipitation:</li>
+              <li>Humidity:</li>
+              <li>Wind:</li>
             </ul>
           </div>
         </div>
