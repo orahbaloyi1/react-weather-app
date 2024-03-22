@@ -10,7 +10,7 @@ export default function Weather() {
     console.log(response.data);
     setWeatherData({
       temperature: response.data.main.temp,
-      date: "04 July",
+      date: new Date(response.data.dt * 1000),
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       description: response.data.weather[0].description,
@@ -41,7 +41,10 @@ export default function Weather() {
         </form>
         <h1 className="mb-0">Joburg</h1>
         <ul className="weather-info">
-          <li>{weatherData.date}</li>
+          <li>{weatherData.date.getDay()}</li>
+          <li>
+            <formattedDate date={weatherData.date} />
+          </li>
           <li>{weatherData.description}</li>
         </ul>
         <div className="row mb-4">
