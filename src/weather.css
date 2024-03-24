@@ -9,14 +9,14 @@ ul li {
   padding-left: 0;
 }
 .weather-image {
-  width: 100px;
+  width: 150px;
+  height: 150px;
 }
 .temperature {
   font-size: 72px;
-  line-height: 100px;
-  align-items: middle;
+  line-height: 72px;
+  vertical-align: middle;
 }
 .units {
-  top: 32px;
   font-size: 24px;
 }
