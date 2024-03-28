@@ -9,6 +9,8 @@ export default function Weather() {
   const [weatherData, setWeatherData] = useState({});
   const [ready, setReady] = useState(false);
   const [city, setCity] = useState("London");
+  const [cityInput, setCityInput] = useState(``);
+
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
@@ -19,6 +21,7 @@ export default function Weather() {
       description: response.data.weather[0].description,
       urlIcon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
       city: response.data.name,
+      ready: true,
     });
     setReady(true);
   }
@@ -29,10 +32,11 @@ export default function Weather() {
   }
   function handleSubmit(event) {
     event.preventDefault();
+    setCity(cityInput);
     searchCity();
   }
   function handleChange(event) {
-    setCity(event.target.value);
+    return setCityInput(event.target.value);
   }
 
   if (ready) {
@@ -45,6 +49,7 @@ export default function Weather() {
                 className="form-control p-3"
                 type="search"
                 placeholder="Enter city"
+                value={cityInput}
                 onChange={handleChange}
               />
             </div>
