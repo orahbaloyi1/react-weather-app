@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
-import "./Weather.css";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecast from "./WeatherForecast";
+import "./Weather.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Weather() {
   const [weatherData, setWeatherData] = useState({});
@@ -12,7 +13,7 @@ export default function Weather() {
   const [cityInput, setCityInput] = useState(``);
 
   function handleResponse(response) {
-    console.log(response.data);
+    console.log(response.data.coord.lat);
     setWeatherData({
       temperature: response.data.main.temp,
       date: new Date(response.data.dt * 1000),
@@ -21,7 +22,7 @@ export default function Weather() {
       description: response.data.weather[0].description,
       urlIcon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
       city: response.data.name,
-      ready: true,
+      coordinates: response.data.coord,
     });
     setReady(true);
   }
@@ -87,77 +88,8 @@ export default function Weather() {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-2 ps-4">Tues</div>
-          <div className="col-2 ps-4">Wed</div>
-          <div className="col-2 ps-4">Thu</div>
-          <div className="col-2 ps-4">Fri</div>
-          <div className="col-2 ps-4">Sat</div>
-          <div className="col-2 ps-4">Sun</div>
-        </div>
-        <div className="row">
-          <div className="col-2">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="weather-image"
-            />
-          </div>
-          <div className="col-2">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="weather-image"
-            />
-          </div>
-          <div className="col-2">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="weather-image"
-            />
-          </div>
-          <div className="col-2">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="weather-image"
-            />
-          </div>
-          <div className="col-2">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="weather-image"
-            />
-          </div>
-          <div className="col-2">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="weather-image"
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-2">
-            <span className="me-2">12</span>
-            <span>12</span>
-          </div>
-          <div className="col-2">
-            <span className="me-2">12</span>
-            <span>12</span>
-          </div>
-          <div className="col-2">
-            <span className="me-2">12</span>
-            <span>12</span>
-          </div>
-          <div className="col-2">
-            <span className="me-2">12</span>
-            <span>12</span>
-          </div>
-          <div className="col-2">
-            <span className="me-2">12</span>
-            <span>12</span>
-          </div>
-          <div className="col-2">
-            <span className="me-2">12</span>
-            <span>12</span>
-          </div>
+        <div>
+          <WeatherForecast coordinates={weatherData.coordinates} />
         </div>
       </div>
     );
