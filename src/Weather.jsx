@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherTemperature from "./WeatherTemperature";
-import WeatherForecast from "./WeatherForecast";
+//import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -11,6 +11,10 @@ export default function Weather() {
   const [ready, setReady] = useState(false);
   const [city, setCity] = useState("London");
   const [cityInput, setCityInput] = useState(``);
+
+  useEffect(() => {
+    searchCity();
+  }, [city]);
 
   function handleResponse(response) {
     console.log(response.data.coord.lat);
@@ -26,6 +30,7 @@ export default function Weather() {
     });
     setReady(true);
   }
+
   function searchCity() {
     const apiKey = "7b2103381278d28203d89c397e41d56e";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -34,7 +39,6 @@ export default function Weather() {
   function handleSubmit(event) {
     event.preventDefault();
     setCity(cityInput);
-    searchCity();
   }
   function handleChange(event) {
     return setCityInput(event.target.value);
@@ -88,13 +92,12 @@ export default function Weather() {
             </div>
           </div>
         </div>
-        <div>
-          <WeatherForecast coordinates={weatherData.coordinates} />
-        </div>
       </div>
     );
   } else {
-    searchCity();
     return "Loading...";
   }
 }
+/*<div>
+   <WeatherForecast coordinates={weatherData.coordinates} />
+ </div>;*/

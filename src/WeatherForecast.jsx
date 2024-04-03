@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 
@@ -38,4 +38,4 @@ export default function WeatherForecast(props) {
     </div>
   );
   weatherForecast();
-}
+}*/
