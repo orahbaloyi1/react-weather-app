@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherTemperature from "./WeatherTemperature";
-//import WeatherForecast from "./WeatherForecast";
+import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -17,7 +17,8 @@ export default function Weather() {
   }, [city]);
 
   function handleResponse(response) {
-    console.log(response.data.coord.lat);
+    // console.log(response.data.coord.lat);
+
     setWeatherData({
       temperature: response.data.main.temp,
       date: new Date(response.data.dt * 1000),
@@ -92,12 +93,12 @@ export default function Weather() {
             </div>
           </div>
         </div>
+        <div>
+          <WeatherForecast coordinates={weatherData.coordinates} />
+        </div>
       </div>
     );
   } else {
     return "Loading...";
   }
 }
-/*<div>
-   <WeatherForecast coordinates={weatherData.coordinates} />
- </div>;*/
